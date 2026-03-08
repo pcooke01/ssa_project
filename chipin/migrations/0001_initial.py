@@ -25,17 +25,4 @@ class Migration(migrations.Migration):
                 ('members', models.ManyToManyField(blank=True, related_name='group_memberships', to=settings.AUTH_USER_MODEL)),
             ],
         ),
-        migrations.CreateModel(
-            name='Invite',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('token', models.UUIDField(default=uuid.uuid4, editable=False, unique=True)),
-                ('accepted', models.BooleanField(default=False)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('expires_at', models.DateTimeField(default=chipin.models.default_invite_expiry)),
-                ('group', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='invites', to='chipin.group')),
-                ('invited_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sent_invites', to=settings.AUTH_USER_MODEL)),
-                ('invited_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='group_invites', to=settings.AUTH_USER_MODEL)),
-            ],
-        ),
     ]
