@@ -28,16 +28,9 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-def _unique_nickname(base: str) -> str:
-    """
-    Generate a unique nickname from a base string (e.g., username).
-    Ensures we never leave nickname null/blank, even for superusers created via CLI.
-    """
-    base = (base or "user").strip() or "user"
-    candidate = base
-    i = 1
-    from django.db.models import Q
-    while Profile.objects.filter(Q(nickname__iexact=candidate)).exists():
-        i += 1
-        candidate = f"{base}-{i}"
-    return candidate
+class Transaction(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f"{self.user.username} - {self.amount}"

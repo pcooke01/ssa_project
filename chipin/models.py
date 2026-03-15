@@ -8,7 +8,7 @@ class Group(models.Model):
     invited_users = models.ManyToManyField(User, related_name='pending_invitations', blank=True)
     def __str__(self):
         return self.name
-    
+
 class GroupJoinRequest(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='join_requests')

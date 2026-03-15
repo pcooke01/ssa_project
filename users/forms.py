@@ -52,3 +52,6 @@ class EmailAuthenticationForm(AuthenticationForm):
         label="Email",
         widget=forms.EmailInput(attrs={"autofocus": True})
     )
+
+class TopUpForm(forms.Form):
+    amount = forms.DecimalField(max_digits=5, decimal_places=2, min_value=0.01, label="Amount to Top Up")

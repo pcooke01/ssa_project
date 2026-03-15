@@ -3,6 +3,10 @@
 {% block title %}ChipIn{% endblock %}
 {% block content %}
     <h1>ChipIn</h1>
+    <h2>Welcome, {{ request.user.nickname }}!</h2>
+    <h2>Current Balance: ${{ balance }}</h2>
+    <a href="{% url 'users:top_up' %}">Top Up Balance</a>
+    
     <h2>Group Invitations</h2>
     <div class="invitation-notification">
         {% if pending_invitations %}
@@ -61,4 +65,5 @@
         <li>No groups available to join.</li>
         {% endfor %}
     </ul>
+
 {% endblock %}

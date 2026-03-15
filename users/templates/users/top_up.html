@@ -1,0 +1,11 @@
+{% extends 'chipin/base.html' %}
+{% load static %}
+{% block title %}Top Up - ChipIn{% endblock %}
+{% block content %}
+    <h1>Top up</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Top Up</button>
+    </form>
+{% endblock %}
